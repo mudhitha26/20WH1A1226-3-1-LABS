@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scent City</title>
+    <!-- Adding tab icon -->
+    <link rel="shortcut icon" href="/img/" type="image/x-icon">
+    <!-- Font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+     <!-- css link -->
+    <link rel="stylesheet" href="/css/headfoot.css">
+     <link rel="stylesheet" href="/css/shop.css">
+</head>
+<body>
+        <!-- header starts here -->
+  <%- include('includes/header.ejs')%>
+  <!-- header ends here -->
+  <div class="space"></div>
+  
+  <!-- home section starts  -->
+<section class="home" id="home">
+    <div class="slide-container active">
+        <div class="slide">
+            <div class="content">
+                <h3>Carolina Herrera Good Girl</h3>
+                <span>MRP: ₹5000</span><br>
+                <a href="#" class="btn">buy now</a>
+            </div>
+            <div class="image">
+                <img src="/img/shop1.jpg" class="shoe" alt="">
+                <!-- <img src="/img/shoe1.jpg" class="text" alt=""> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <div class="slide">
+            <div class="content">
+                <h3>Gucci Bamboo</h3>
+                <span>MRP: ₹7800</span><br>
+                <a href="#" class="btn">buy now</a>
+            </div>
+            <div class="image">
+                <img src="img/shop2.jpg" class="shoe" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <div class="slide">
+            <div class="content">
+                <h3>Tresor Midnight rose</h3>
+                <span>MRP: ₹4200</span><br>
+                <a href="#" class="btn">buy now</a>
+            </div>
+            <div class="image">
+                <img src="img/shop3.jpg" class="shoe" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div id="prev" class="fas fa-chevron-left" onclick="prev()"></div>
+    <div id="next" class="fas fa-chevron-right" onclick="next()"></div>
+</section>
+<!-- home section ends -->
+
+<!-- products section starts  -->
+
+<section class="products" id="products">
+
+    <h1 class="heading"> latest <span>products</span> </h1>
+    <div class="box-container">
+      <% prod.forEach(function(prod){%>
+        <div class="box">
+            <div class="icons">
+                <a href="#" class="fas fa-heart"></a>
+            </div>
+            <img src="<%=prod.product%>"alt="">
+            <div class="content">
+                <h3><%=prod.name%></h3>
+                <div class="price">&#8377;<%=prod.cost%><span>&#8377;<%=prod.realcost%></span></div>
+                <form  action="/addcart" method="GET">
+                    <input type="hidden" class="id-num" name="name" value=" <%= prod.name%> " readonly>
+                    <input type="hidden" class="id-num" name="img" value=" <%= prod.product%> " readonly>
+                    <input type="hidden" class="id-num" name="cost" value=" <%= prod.cost%> " readonly>
+                    <input type="hidden" class="id-num" name="product" value=" <%= prod.id%> " readonly>
+                    <input type="hidden" class="id-num" name="quantity" value="<%= prod.quantity%>" readonly>
+                    <input type="submit" class="btn" value="add to cart">
+                </form>
+            </div>
+        </div>
+        <%})%>
+    </div> 
+</section>
+
+<!-- products section ends -->
+
+  <!-- Footer -->
+  <%-include('includes/footer.ejs')%>
+  <!-- Footer  -->
+  <script src="/js/headfoot.js"></script>
+   <script src="/js/shop.js"></script>
+</body>
+</html>
